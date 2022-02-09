@@ -1,0 +1,33 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  servlet:
+    context-path: /shopee-order-service
+  port: 8200
+spring:
+   application:
+      name: shopee-order-service
+   h2:
+      console:
+      enabled: true
+      path: /h2
+   datasource:
+      driverClassName: org.h2.Driver
+      url: jdbc:h2:file:~/Explore/shopee/shopee-order-service/data/shopee_order_service;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
+      username: sa
+      password: sa
+   jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      show-sql: true
+      hibernate:
+         ddl-auto: update
+         naming:
+           implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+           physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+eureka:
+   client:
+      serviceUrl:
+         defaultZone: http://localhost:9000/shopee-naming-server/eureka
